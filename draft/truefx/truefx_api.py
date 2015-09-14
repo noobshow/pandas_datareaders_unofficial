@@ -60,9 +60,9 @@ def query_auth_send(session, session_data, debug):
 
 def parse_data(data):
     data_io = StringIO(data)
-    df = pd.read_csv(data_io, header=0,1,2,3,4,5,6, \
+    df = pd.read_csv(data_io, header=None, \
         names=['Symbol', 'Date', 'Bid', 'Bid_point', \
-            'Ask', 'Ask_point'])
+            'Ask', 'Ask_point', 'High', 'Low', 'Open'])
 
     df['Date'] = pd.to_datetime(df['Date'], unit='ms')
     df = df.set_index('Symbol')
@@ -169,10 +169,6 @@ SYMBOLS_ALL = ['EUR/USD', 'USD/JPY', 'GBP/USD', 'EUR/GBP', 'USD/CHF', 'AUD/NZD',
     help=u"Cache expiration (-1: no cache, 0: no expiration, 00:15:00.0: expiration delay)")
 def main(symbols, username, password, expire_after):
 
-    print("""TrueFX - Python API call
-========================
-""")
-
     if expire_after=='-1':
         expire_after = None
     else:
@@ -186,16 +182,7 @@ def main(symbols, username, password, expire_after):
     is_registered = registered(username, password)
     
     if not is_registered:
-        print("""You should register to TrueFX at
-http://www.truefx.com/
-and pass username and password using CLI flag
---username your_username
---password your_password
-
-or setting environment variables using:
-export TRUEFX_USERNAME="your_username"
-export TRUEFX_PASSWORD="your_password"
-""")
+        print("")
 
     qualifier = 'default'
     api_format = 'csv'
