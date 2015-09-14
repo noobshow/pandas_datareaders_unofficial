@@ -60,9 +60,9 @@ def query_auth_send(session, session_data, debug):
 
 def parse_data(data):
     data_io = StringIO(data)
-    df = pd.read_csv(data_io, header=None, \
+    df = pd.read_csv(data_io, header=0,1,2,3,4,5,6, \
         names=['Symbol', 'Date', 'Bid', 'Bid_point', \
-            'Ask', 'Ask_point', 'High', 'Low', 'Open'])
+            'Ask', 'Ask_point'])
 
     df['Date'] = pd.to_datetime(df['Date'], unit='ms')
     df = df.set_index('Symbol')
