@@ -1,13 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""
-API to get FX prices from TrueFX
-
-http://www.truefx.com/
-http://www.truefx.com/?page=download&description=api
-http://www.truefx.com/dev/data/TrueFX_MarketDataWebAPI_DeveloperGuide.pdf
-"""
 
 import click
 
